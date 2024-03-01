@@ -12,7 +12,7 @@ jobs:
     - name: Deploy using SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: 36.80.210.138
+        host: "rendy.freeddns.org"
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT }}
