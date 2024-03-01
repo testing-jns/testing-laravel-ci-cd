@@ -12,10 +12,10 @@ jobs:
     - name: Deploy using SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
+        host: "rendy.freeddns.org"
+        username: "root"
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ secrets.SSH_PORT }}
+        port: 22
         script: | 
           cd /var/www/test_ci_cd/testing-laravel-ci-cd
           git pull origin main
