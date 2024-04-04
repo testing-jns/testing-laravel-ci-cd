@@ -2,11 +2,12 @@ name: Continuous Delivery / Deploy
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: 
+      - main
+    types: [closed]
 
 jobs:
-  build:
-    name: Build
+  if_merged:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy using SSH
@@ -14,9 +15,9 @@ jobs:
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
-        password: ${{ secrets.SSH_PRIVATE_KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT }}
         script: | 
-          cd /var/www/test_ci_cd/testing-laravel-ci-cd
-          git pull origin main
-          systemctl restart nginx
+           cd /var/www/test_ci_cd/testing-laravel-ci-cd
+           git pull origin main
+           systemctl restart nginx
